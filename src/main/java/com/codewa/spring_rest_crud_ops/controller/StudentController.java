@@ -2,9 +2,7 @@ package com.codewa.spring_rest_crud_ops.controller;
 
 import com.codewa.spring_rest_crud_ops.entity.Student;
 import com.codewa.spring_rest_crud_ops.repository.StudentRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,5 +26,11 @@ public class StudentController {
     @GetMapping("/student/{id}")
     public Optional<Student> getStudentById(@PathVariable int id) {
         return (Optional<Student>) studentRepository.findById(id);
+    }
+
+    //add new student
+    @PostMapping("/student/save")
+    public Student saveStudent(@RequestBody Student student) {
+        return studentRepository.save(student);
     }
 }
